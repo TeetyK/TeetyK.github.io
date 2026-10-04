@@ -14,13 +14,13 @@ permissions:
 # Allow only one concurrent deployment
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false # true
 
 jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps: //://github.com }}
+      url: ${{ steps.deployment.outputs.page_url }} # ${{ steps: //://github.com }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
