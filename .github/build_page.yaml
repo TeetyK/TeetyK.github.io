@@ -18,7 +18,8 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }} # ${{ steps: //://github.com }}
+      # url: ${{ steps.deployment.outputs.page_url }} # ${{ steps: //://github.com }}
+      url: ${{ steps: //://github.com }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
