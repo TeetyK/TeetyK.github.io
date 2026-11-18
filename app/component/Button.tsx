@@ -1,7 +1,7 @@
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
-    variant?: 'priary' | 'secondary' | 'inverted' | 'outlined' | 'iconOnly';
+    variant?: 'primary' | 'secondary' | 'inverted' | 'outlined' | 'iconOnly';
     icon?: LucideIcon | React.ElementType;
 }
 export default function Button({ variant = 'primary', children, icon: Icon , className='',
