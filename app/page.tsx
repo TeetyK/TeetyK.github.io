@@ -16,7 +16,7 @@ export default function Home() {
         <Button variant="primary">Primary</Button>
         <Button variant="primary" icon={Pencil}>Label</Button>
         <SearchBar />
-        <ProgressBar color="red" percent="90"/>
+        <ProgressBar color="red" percent={90} />
         <PillNav />
       </footer>
     </div>
