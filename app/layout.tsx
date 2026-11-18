@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono , Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 const nerdFont = localFont({
@@ -16,6 +16,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inter = Inter({
+  variable: "--font-inter",
+  subsets:['latin'],
+})
+
 export const metadata: Metadata = {
   title: "My Portfolio",
   description: "Created by TeetyK",
@@ -29,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${nerdFont.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${nerdFont.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
