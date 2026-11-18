@@ -1,5 +1,12 @@
-
-export default function Button({ variant, children, icon: Icon }) {
+import React from 'react';
+import { LucideIcon } from 'lucide-react';
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
+    variant?: 'priary' | 'secondary' | 'inverted' | 'outlined' | 'iconOnly';
+    icon?: LucideIcon | React.ElementType;
+}
+export default function Button({ variant = 'primary', children, icon: Icon , className='',
+    ...props
+}: ButtonProps) {
   const baseStyle = "flex items-center justify-center gap-2 px-4 py-2 rounded font-mono text-sm transition-all";
   
   const variants = {
@@ -11,7 +18,8 @@ export default function Button({ variant, children, icon: Icon }) {
   };
 
   return (
-    <button className={`${baseStyle} ${variants[variant]}`}>
+    <button className={`${baseStyle} ${variants[variant]}`}
+    {...props}>
       {Icon && <Icon className="w-4 h-4" />}
       {children}
     </button>
