@@ -3,7 +3,10 @@ export default function test(){
 
     return (
         <div>
-            TEST bun run build for git actions test3
+            This website is only testing other feature same as playground by TeetyK
+            <div className="thai">
+                สวัสดีครับ ทดสอบภาษาไทย
+            </div>
         </div>
     );
 }

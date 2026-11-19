@@ -4,13 +4,11 @@ import { Pencil, Pill } from 'lucide-react';
 import SearchBar from './component/SearchBar';
 import ProgressBar from './component/ProgressBar';
 import PillNav from './component/PillNav';
+import Header from './header';
 export default function Home() {
   return (
     <div>
-      <nav>
-        Home
-        
-      </nav>
+      <Header />
       <footer>
         <Test />
         <Button variant="primary">Primary</Button>
