@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono , Inter , IBM_Plex_Sans_Thai } from "next/font/google";
+import { Geist, Geist_Mono , Inter , IBM_Plex_Sans_Thai , Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 const nerdFont = localFont({
   src: "./fonts/JetBrainsMonoNerdFontMono-Regular.ttf",
   variable: "--font-nerd"
 });
+const plus_jakarta_sans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
+  weight: "700",
+})
 
 const thaiFont = IBM_Plex_Sans_Thai({
   variable: "--font-thai",
@@ -39,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${nerdFont.variable} ${inter.variable} ${thaiFont.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${nerdFont.variable} ${inter.variable} ${thaiFont.variable} ${plus_jakarta_sans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

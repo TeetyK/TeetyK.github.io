@@ -7,6 +7,7 @@ export default function test(){
             <div className="thai">
                 สวัสดีครับ ทดสอบภาษาไทย
             </div>
+            <span className="sakura-font">Test plus jakarata</span>
         </div>
     );
 }

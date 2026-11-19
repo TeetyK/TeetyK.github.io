@@ -3,10 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #10B981;
-  --secondary: #06B6D4;
-  --tertiary: #8B5CF6;
-  --neutral: #0A0D14;
+  --primary: #F472B6;
+  --secondary: #FDA4AF;
+  --tertiary: #38BDF8;
+  --neutral: #1A1524;
+  --surface: #161120;
+  --on-surface: #e9def4;
+  --surface-container : #221d2c;
 }
 
 @theme inline {
@@ -21,11 +24,18 @@
   --color-neutral: var(--neutral);
   --font-inter: var(--font-inter);
   --font-thai: var(--font-thai);
+  --font-plus-jakarta: var(--font-plus-jakarta);
+  --color-surface : var(--surface);
+  --color-on-surface :var(--on-surface);
+  --text-body-sm: 13px;
+  --text-body-sm--line-height: 20px;
+  --text-body-sm--font-weight: 400;
+  --color-surface-container : var(--surface-container);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #161120;
     --foreground: #ededed;
   }
 }
@@ -47,4 +57,7 @@ nav {
 
 .thai {
   font-family: var(--font-thai);
+}
+.sakura-font {
+  font-family: var(--font-plus-jakarta);
 }

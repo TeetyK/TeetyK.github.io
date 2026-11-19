@@ -7,15 +7,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
 export default function Button({ variant = 'primary', children, icon: Icon , className='',
     ...props
 }: ButtonProps) {
-  const baseStyle = "flex items-center justify-center gap-2 px-4 py-2 rounded font-mono text-sm transition-all";
+  const baseStyle = "flex items-center justify-center gap-2 px-5 py-2.5 rounded-md font-mono text-sm font-medium transition-all";
   
   const variants = {
-    primary: "bg-[#10B981] text-black hover:bg-[#0ea5e9]", 
-    secondary: "bg-[#2A2D3D] text-gray-300 hover:text-white",
-    inverted: "bg-white text-black",
-    outlined: "border border-gray-600 text-gray-300 bg-transparent",
-    iconOnly: "p-2 bg-[#8B5CF6] text-white rounded-md"
-  };
+  primary: "bg-[#FFB0D8] text-[#3D0A3A] hover:bg-[#FF99CC]",
+  secondary: "bg-[#2C2834] text-[#E9E4F0] hover:bg-[#383342] hover:text-white",
+  inverted: "bg-[#EAE5F2] text-[#1F1B26] hover:bg-white",
+  outlined: "border border-[#847B90] text-[#E9E4F0] bg-transparent hover:bg-[#2C2834]/60 hover:border-[#A39AB0]",
+  iconOnly: "p-2 bg-[#FFB0D8] text-[#3D0A3A] hover:bg-[#FF99CC] rounded-md",
+};
 
   return (
     <button className={`${baseStyle} ${variants[variant]}`}

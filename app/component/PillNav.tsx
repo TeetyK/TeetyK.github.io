@@ -4,7 +4,7 @@ export default function PillNav() {
   return (
     <div className="inline-flex items-center gap-2 bg-[#1A1C28] p-2 rounded-full border border-gray-700/50">
       {/* Active State (ปุ่มซ้ายสุดสีเขียว) */}
-      <button className="p-2 bg-[#10B981] text-black rounded-sm">
+      <button className="p-2 bg-[#F472B6] text-black rounded-sm">
         <Home className="w-4 h-4" />
       </button>
       {/* Inactive States */}
