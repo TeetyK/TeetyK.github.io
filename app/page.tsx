@@ -9,14 +9,14 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <footer>
+      {/* <footer>
         <Test />
         <Button variant="primary">Primary</Button>
         <Button variant="primary" icon={Pencil}>Label</Button>
         <SearchBar />
         <ProgressBar color="red" percent={90} />
         <PillNav />
-      </footer>
+      </footer> */}
     </div>
   );
 }
