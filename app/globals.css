@@ -16,6 +16,7 @@
   --on-secondary-fixed :#3b0613;
   --on-tertiary : #00354a;
   --surface-variant : #383242;
+  --on-surface-variant : #dac0c9;
   --color-inverse-primary : #a43073;
   --error : #ffb4ab;
 }
@@ -35,6 +36,7 @@
   --font-plus-jakarta: var(--font-plus-jakarta);
   --color-surface : var(--surface);
   --color-on-surface :var(--on-surface);
+  --color-on-surface-variant : var(--on-surface-variant);
   --text-body-sm: 13px;
   --text-body-sm--line-height: 20px;
   --text-body-sm--font-weight: 400;
@@ -62,6 +64,9 @@
   --spacing-gutter : 1.5rem;
   --spacing-margin-mobile : 1rem;
   --spacing-space-sm : 0.5rem;
+  --text-body-sm : 13px;
+  --text-body-sm--lineweight : 20px;
+  --text-body-sm--fontweight : 400;
 }
 
 @media (prefers-color-scheme: dark) {

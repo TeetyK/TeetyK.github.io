@@ -13,7 +13,7 @@ const plus_jakarta_sans = Plus_Jakarta_Sans({
 
 const thaiFont = IBM_Plex_Sans_Thai({
   variable: "--font-thai",
-  weight: "700",
+  weight: ["100","200","300","400","500","600","700"],
 });
 const geistSans = Geist({
   variable: "--font-geist-sans",

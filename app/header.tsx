@@ -12,16 +12,23 @@ export default function Header(){
                         <span>teetyk.dev</span>
                         <span className="text-primary text-body-sm">🌸</span>
                     </a>
-                    <div className="hidden xl:flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container-low">
+                    <div className="hidden xl:flex items-center gap-space-sm px-space-sm py-space-xs rounded-full bg-surface-container-low">
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary shadow-[0_0_8px_#f472b6]"></span>
                         </span>
-                        <span className="font-nerd text-on-surface">Not available for hire / ไม่รับงาน</span>
+                        <span className="font-nerd text-on-surface">Not available for hire / <span className="font-thai font-normal"> ไม่รับงาน </span></span> 
                     </div>
                 </div>
+                <nav className="hidden md:flex items-center gap-space-lg" data-active-classes="text-primary font-bold">
+                <a href="#about" className="text-on-surface-variant hover:text-on-surface text-body-sm font-thai font-semibold transition-colors" data-path="about">เกี่ยวกับฉัน</a>
+                <a href="#education" className="text-on-surface-variant hover:text-on-surface text-body-sm font-thai font-semibold transition-colors" data-path="education">การศึกษา</a>
+                <a href="#experience" className="text-on-surface-variant hover:text-on-surface text-body-sm font-thai font-semibold transition-colors" data-path="experience">ประสบการณ์</a>
+                <a href="#projects" className="text-on-surface-variant hover:text-on-surface text-body-sm font-thai font-semibold transition-colors" data-path="projects">ผลงาน</a>
+                <a href="#contact" className="text-on-surface-variant hover:text-on-surface text-body-sm font-thai font-semibold transition-colors" data-path="contact">ติดต่อ</a>
+            </nav>
             </div>
+            
         </header>
     );
 }
