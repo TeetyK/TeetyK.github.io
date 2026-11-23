@@ -20,6 +20,7 @@
   --color-inverse-primary : #a43073;
   --error : #ffb4ab;
   --on-surface-container-low : #1e1928;
+  --outline-variant : #544249;
 }
 
 @theme inline {
@@ -39,6 +40,7 @@
   --color-on-surface :var(--on-surface);
   --color-on-surface-variant : var(--on-surface-variant);
   --color-on-surface-container-low : var(--on-surface-container-low);
+  --color-outline-variant : var(--outline-variant);
   --text-body-sm: 13px;
   --text-body-sm--line-height: 20px;
   --text-body-sm--font-weight: 400;
