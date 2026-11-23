@@ -1,4 +1,5 @@
-
+import Image from "next/image";
+import iconPerson from "./assets/user.jpg";
 export default function Header(){
 
     return (
@@ -17,9 +18,10 @@ export default function Header(){
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary shadow-[0_0_8px_#f472b6]"></span>
                         </span>
-                        <span className="font-nerd text-on-surface">Not available for hire / <span className="font-thai font-normal"> ไม่รับงาน </span></span> 
+                        <span className="font-nerd text-on-surface">Not available for hire / <span className="font-thai font-normal"> ไม่รับงาน ติดงานประจำ</span></span> 
                     </div>
                 </div>
+                {/* Navigation  */}
                 <nav className="hidden md:flex items-center gap-space-lg" data-active-classes="text-primary font-bold">
                 <a href="#about" className="text-on-surface-variant hover:text-on-surface text-body-sm font-thai font-semibold transition-colors" data-path="about">เกี่ยวกับฉัน</a>
                 <a href="#education" className="text-on-surface-variant hover:text-on-surface text-body-sm font-thai font-semibold transition-colors" data-path="education">การศึกษา</a>
@@ -27,6 +29,23 @@ export default function Header(){
                 <a href="#projects" className="text-on-surface-variant hover:text-on-surface text-body-sm font-thai font-semibold transition-colors" data-path="projects">ผลงาน</a>
                 <a href="#contact" className="text-on-surface-variant hover:text-on-surface text-body-sm font-thai font-semibold transition-colors" data-path="contact">ติดต่อ</a>
             </nav>
+            {/*  icon  */}
+                <div className="flex items-center gap-space-md">
+                    <div className="flex md:hidden items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container-low">
+                        <span className="inline-flex rounded-full h-2 w-2 bg-primary shadow-[0_0_6px_#f472b6]"></span>
+                        <span className="font-nerd text-2xl text-on-surface-variant">OPEN</span>
+                    </div>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_12px_rgba(255,175,211,0.3)]">
+                    <Image 
+                        priority
+                        src={iconPerson}
+                        alt="Profile Avatar"
+                        width={120}
+                        height={120}
+                        className="rounded-full object-cover"
+                    />
+                </div>
             </div>
             
         </header>
