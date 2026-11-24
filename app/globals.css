@@ -21,6 +21,8 @@
   --error : #ffb4ab;
   --on-surface-container-low : #1e1928;
   --outline-variant : #544249;
+  --surface-container-high : #2d2737;
+  --outline : #a28a93;
 }
 
 @theme inline {
@@ -41,6 +43,8 @@
   --color-on-surface-variant : var(--on-surface-variant);
   --color-on-surface-container-low : var(--on-surface-container-low);
   --color-outline-variant : var(--outline-variant);
+  --color-surface-container-high : var(--surface-container-high);
+  --color-outline : var(--outline);
   --text-body-sm: 13px;
   --text-body-sm--line-height: 20px;
   --text-body-sm--font-weight: 400;
@@ -50,6 +54,9 @@
   --text-label-code: 14px;
   --text-label-code--line-height : 22px;
   --text-label-code--font-weight:500;
+  --text-body-lg: 18px;
+  --text-body-lg--line-weight: 28px;
+  --text-body-lg--font-weight: 400;
   --color-surface-container : var(--surface-container);
   --font-on-primary-container : var(--on-primary-container);
   --font-primary-container : var(--primary-container);

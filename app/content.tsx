@@ -31,6 +31,23 @@ export default function Content(){
                                    <span className="font-thai">Hi ,</span>They're call me <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-secondary drop-shadow-[0_0_24px_rgba(244,114,182,0.35)]">"TeetyK"</span>
                                 </h1>
                             </div>
+                            <p className="font-thai text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                                ชอบการเก็บรวบรวมข้อมูลจนไปถึงได้ โมเดลที่สามารถทำนายได้ <span className="text-primary font-medium">Data Scientist - AI</span> และ Web Application เรียบง่าย โดยให้ความสำคัญกับกระบวนการทำงานและความสวยงาม
+                            </p>
+                            <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
+                                <a href="#projects" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg text-sm bg-primary-container text-on-primary-container font-nerd font-semibold shadow-[0_0_24px_rgba(244,114,182,0.45)] hover:bg-primary transition-all duration-300 hover:-translate-y-0.5">
+                                    <span>view projects</span>
+                                    <span className="material-symbols-outlined text-[10px]">arrow_downward</span>
+                                </a>
+                                <a href="#contact" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg bg-surface-container text-primary font-nerd font-semibold text-sm border border-primary/20 hover:bg-surface-container-high hover:border-primary/50 transition-all duration-300">
+                                    <span className="material-symbols-outlined text-[10px]">chat_bubble_outline</span>
+                                    <span>contact</span>
+                                </a>
+                            </div>
+                            {/* Tech Stack */}
+                            <div className="flex flex-col gap-space-xs pt-space-sm w-full">
+                                <span className="font-nerd text-normal uppercase tracking-wider text-outline">CORE TECHNOLOGIES &amp; TOOLING</span>
+                            </div>
                         </div>
                     </div>
                 </section>

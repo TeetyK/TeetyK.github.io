@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono , Inter , IBM_Plex_Sans_Thai , Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
+import 'material-symbols/outlined.css';
 import "./globals.css";
 const nerdFont = localFont({
   src: "./fonts/JetBrainsMonoNerdFontMono-Regular.ttf",
