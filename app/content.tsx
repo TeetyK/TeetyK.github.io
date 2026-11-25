@@ -47,6 +47,90 @@ export default function Content(){
                             {/* Tech Stack */}
                             <div className="flex flex-col gap-space-xs pt-space-sm w-full">
                                 <span className="font-nerd text-normal uppercase tracking-wider text-outline">CORE TECHNOLOGIES &amp; TOOLING</span>
+                                <div className="flex flex-wrap gap-2 pt-1">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>Go
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>C/C++
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Python
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>TypeScript
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>React / Next.js
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Docker / Kubernetes
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Google Cloud Platform
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>PostgreSQL
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>Data Engineering
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>Data Science
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>Machine Learning
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>Deep Learning
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container font-nerd text-normal text-on-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>LLM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        {/* code right section */}
+                        <div className="lg:col-span-4 flex flex-col gap-space-md">
+                            <div className="rounded-xl bg-surface-container-low border border-outline-variant/30 p-space-sm shadow-[0_16px_36px_rgba(0,0,0,0.3)]">
+                                <div className="flex items-center justify-between pb-space-sm border-b border-outline-variant/20 mb-space-sm">
+                                    <div className="flex items-center gap-1.5">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+                                        <span className="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+                                        <span className="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+                                    </div>
+                                    <span className="font-nerd text-sm text-outline">main.go</span>
+                                </div>
+                                <pre className="font-nerd text-[12px] leading-5 text-on-surface-variant overflow-x-auto selection:bg-primary/20"><code>
+                                    <span className="text-primary font-semibold">package</span> main <br />
+                                    <span className="text-primary font-semibold">type</span> Developer <span className="text-primary font-semibold">struct</span> {'\{'} <br/>
+                                        &ensp;&ensp;&ensp;Name    <span className="text-tertiary">string</span><br/>
+                                        &ensp;&ensp;&ensp;Motto   <span className="text-tertiary">string</span><br/>
+                                        &ensp;&ensp;&ensp;Fav     <span className="text-tertiary">string</span><br/>
+                                    {'\}'}<br/>
+
+                                    <span className="text-primary font-semibold">func</span> <span className="text-tertiary">Init</span>() *Developer {'\{'}<br/>
+                                    <span className="text-outline">//🌸 Learning Clean code, make impact</span><br/>
+                                    <span className="text-primary font-semibold">return</span> &amp;Developer{'\{'}<br/>
+                                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Name : <span className="text-secondary-fixed">"Phunyapat panithiporn"</span>,<br/>
+                                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Motto : <span className="text-secondary-fixed">"Just Chill,Don't Serious,Keep do it"</span>,<br/>
+                                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Fav : <span className="text-tertiary text-[10px]">🖥️programming 🏃🏻‍♂️‍➡️Running 🎮Games 📷Photo</span>,<br/>
+                                    &ensp;&ensp;&ensp;{'\}'}<br/>
+                                    {'\}'}</code></pre>
+                            </div>
+                            <div className="grid grid-cols-3 gap-space-xs">
+                                <div className="p-space-sm rounded-lg bg-surface-container border border-outline-variant/20 flex flex-col">
+                                    <span className="font-nerd text-body-lg font-bold text-primary">11 เดือน</span>
+                                    <span className="font-thai text-body-sm text-on-surface-variant">ประสบการณ์ทำงานสาย Data จริง</span>
+                                </div>
+                                <div className="p-space-sm rounded-lg bg-surface-container border border-outline-variant/20 flex flex-col">
+                                    <span className="font-nerd text-body-lg text-secondary font-bold">E2E</span>
+                                    <span className="font-thai text-body-sm text-on-surface-variant">พัฒนาครบวงจรตั้งแต่ข้อมูล โมเดล ยันเว็บ</span>
+                                </div>
+                                <div className="p-space-sm rounded-lg bg-surface-container border border-outline-variant/20 flex flex-col">
+                                    <span className="font-nerd text-body-lg text-tertiary font-bold">3 สาย</span>
+                                    <span className="font-thai text-body-sm text-on-surface-variant">Data Science • Data Eng • AI / Web</span>
+                                </div>
                             </div>
                         </div>
                     </div>

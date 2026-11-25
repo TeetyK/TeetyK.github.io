@@ -5,6 +5,7 @@
   --foreground: #171717;
   --primary: #F472B6;
   --secondary: #FDA4AF;
+  --secondary-fixed : #3b0613;
   --tertiary: #38BDF8;
   --neutral: #1A1524;
   --surface: #161120;
@@ -33,7 +34,7 @@
   --font-nerd: var(--font-nerd);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
-  --color-tertiary: var(--tertiay);
+  --color-tertiary: var(--tertiary);
   --color-neutral: var(--neutral);
   --font-inter: var(--font-inter);
   --font-thai: var(--font-thai);
@@ -45,6 +46,7 @@
   --color-outline-variant : var(--outline-variant);
   --color-surface-container-high : var(--surface-container-high);
   --color-outline : var(--outline);
+  --color-secondary-fixed : var(--secondary-fixed);
   --text-body-sm: 13px;
   --text-body-sm--line-height: 20px;
   --text-body-sm--font-weight: 400;
