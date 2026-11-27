@@ -113,8 +113,8 @@ export default function Content(){
                                     {'\}'}<br/>
 
                                     <span className="text-primary font-semibold">func</span> <span className="text-tertiary">Init</span>() *Developer {'\{'}<br/>
-                                    <span className="text-outline">//🌸 Learning Clean code, make impact</span><br/>
-                                    <span className="text-primary font-semibold">return</span> &amp;Developer{'\{'}<br/>
+                                    <span className="text-outline">&ensp;&ensp;&ensp;//🌸 Learning Clean code, make impact</span><br/>
+                                    <span className="text-primary font-semibold">&ensp;&ensp;&ensp;return</span> &amp;Developer{'\{'}<br/>
                                     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Name : <span className="text-secondary-fixed">"Phunyapat panithiporn"</span>,<br/>
                                     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Motto : <span className="text-secondary-fixed">"Just Chill,Don't Serious,Keep do it"</span>,<br/>
                                     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Fav : <span className="text-tertiary text-[10px]">🖥️programming 🏃🏻‍♂️‍➡️Running 🎮Games 📷Photo</span>,<br/>
@@ -351,6 +351,10 @@ export default function Content(){
                         <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
                                 <a href="https://github.com/TeetyK" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg text-sm bg-primary-container text-on-primary-container font-nerd font-semibold shadow-[0_0_24px_rgba(244,114,182,0.45)] hover:bg-primary transition-all duration-300 hover:-translate-y-0.5">
                                     <span>Github</span>
+                                    <LuGithub size={20} />
+                                </a>
+                                <a href="https://github.com/TeetyK" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg text-sm bg-primary-container text-on-primary-container font-nerd font-semibold shadow-[0_0_24px_rgba(244,114,182,0.45)] hover:bg-primary transition-all duration-300 hover:-translate-y-0.5">
+                                    <span>Contest ShortClip</span>
                                     <LuGithub size={20} />
                                 </a>
                         </div>
