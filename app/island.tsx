@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Environment, OrbitControls, useAnimations, useGLTF } from '@react-three/drei';
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
@@ -11,108 +11,13 @@ const BURST_SPEED = 16; // ความเร็วตอนเลื่อน�
 const IDLE_SPEED = 0.35; // ความเร็วตอนช้าลงแล้ว (หมุนค่อยๆ ไป)
 const DAMPING = 2.0; // อัตราหน่วงให้ค่อยๆ ช้าลง
 
-/** ดึงสีเฉลี่ยจาก Texture กรณีโมเดลใช้ภาพ UV Map แทนการลงสี Material ตรงๆ */
-function sampleTextureColor(texture: THREE.Texture): string | null {
-  try {
-    const img = texture.image as CanvasImageSource | undefined;
-    if (!img) return null;
-
-    const canvas = document.createElement('canvas');
-    canvas.width = 8;
-    canvas.height = 8;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return null;
-
-    ctx.drawImage(img, 0, 0, 8, 8);
-    const { data } = ctx.getImageData(0, 0, 8, 8);
-
-    let r = 0;
-    let g = 0;
-    let b = 0;
-    let count = 0;
-
-    for (let i = 0; i < data.length; i += 4) {
-      if (data[i + 3] < 128) continue;
-      r += data[i];
-      g += data[i + 1];
-      b += data[i + 2];
-      count++;
-    }
-
-    if (count === 0) return null;
-    return `#${new THREE.Color(r / count / 255, g / count / 255, b / count / 255).getHexString()}`;
-  } catch {
-    return null;
-  }
-}
-
-/** ดึงสีหลัก 1–2 สีจากตัวโมเดล เพื่อนำไปฉายแสงส่องสว่างทั้งหน้าเว็บ */
-function extractModelColors(object: THREE.Object3D): [string, string] {
-  const candidates: { hex: string; score: number }[] = [];
-  const hsl = { h: 0, s: 0, l: 0 };
-
-  object.traverse((child) => {
-    if (!(child as THREE.Mesh).isMesh) return;
-    const mesh = child as THREE.Mesh;
-    const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
-
-    for (const mat of materials) {
-      if (
-        !(
-          mat instanceof THREE.MeshStandardMaterial ||
-          mat instanceof THREE.MeshPhysicalMaterial
-        )
-      ) {
-        continue;
-      }
-
-      const hasEmissive =
-        mat.emissive.r > 0.02 || mat.emissive.g > 0.02 || mat.emissive.b > 0.02;
-      if (hasEmissive) {
-        mat.emissive.getHSL(hsl);
-        candidates.push({
-          hex: `#${mat.emissive.getHexString()}`,
-          score: 3 + hsl.s,
-        });
-      }
-
-      if (mat.map) {
-        const texHex = sampleTextureColor(mat.map);
-        if (texHex) {
-          new THREE.Color(texHex).getHSL(hsl);
-          candidates.push({ hex: texHex, score: 1.5 + hsl.s });
-        }
-      }
-
-      mat.color.getHSL(hsl);
-      if (hsl.l > 0.08) {
-        candidates.push({
-          hex: `#${mat.color.getHexString()}`,
-          score: 1 + hsl.s * 2,
-        });
-      }
-    }
-  });
-
-  candidates.sort((a, b) => b.score - a.score);
-  const unique: string[] = [];
-  for (const c of candidates) {
-    if (!unique.includes(c.hex)) unique.push(c.hex);
-    if (unique.length >= 2) break;
-  }
-
-  if (unique.length === 0) return ['#f472b6', '#a855f7'];
-  if (unique.length === 1) return [unique[0], unique[0]];
-  return [unique[0], unique[1]];
-}
-
 function ResponsiveIsoCamera() {
   const { camera, size } = useThree();
 
   useEffect(() => {
     if (camera instanceof THREE.OrthographicCamera) {
-      // เผื่อระยะรอบตัวโมเดลให้มีพื้นที่จางแสง Bloom ก่อนถึงขอบกรอบ
-      camera.zoom = Math.min(size.width, size.height) / 4.5;
+      // ยิ่งตัวหารน้อย ยิ่งซูมใกล้ (ปรับช่วง 5.0 - 7.0 ได้ตามขนาดโมเดล)
+      camera.zoom = Math.min(size.width, size.height) / 4;
       camera.updateProjectionMatrix();
     }
   }, [camera, size.width, size.height]);
@@ -123,21 +28,18 @@ function ResponsiveIsoCamera() {
 interface ModelProps {
   modelPath: string;
   triggerCount: number;
-  onColorsReady: (colors: [string, string]) => void;
 }
 
-function SpinningModel({ modelPath, triggerCount, onColorsReady }: ModelProps) {
+function SpinningModel({ modelPath, triggerCount }: ModelProps) {
   const pivotRef = useRef<THREE.Group>(null);
   const animRootRef = useRef<THREE.Group>(null);
   const speedRef = useRef(IDLE_SPEED);
 
   const { scene, animations } = useGLTF(modelPath);
 
-  const { clonedScene, offset, normalizedScale, clonedMaterials, glowColors } = useMemo(() => {
+  const { clonedScene, offset, normalizedScale, clonedMaterials } = useMemo(() => {
     const clone = SkeletonUtils.clone(scene);
     const createdMaterials: THREE.Material[] = [];
-
-    const extractedColors = extractModelColors(clone);
 
     const applySelfNeon = (mat: THREE.Material) => {
       const matClone = mat.clone();
@@ -155,7 +57,8 @@ function SpinningModel({ modelPath, triggerCount, onColorsReady }: ModelProps) {
 
         if (hasEmissive) {
           matClone.emissiveIntensity = Math.max(matClone.emissiveIntensity, 1.8);
-        } else {
+        } else if (!matClone.vertexColors) {
+          // ดึงสีและ Texture จริงของแต่ละชิ้นส่วนมาเรืองแสงตามสีของตัวเอง
           matClone.emissive.copy(matClone.color);
           if (matClone.map) {
             matClone.emissiveMap = matClone.map;
@@ -202,13 +105,8 @@ function SpinningModel({ modelPath, triggerCount, onColorsReady }: ModelProps) {
       offset: center.negate(),
       normalizedScale: 2.35 / radius,
       clonedMaterials: createdMaterials,
-      glowColors: extractedColors,
     };
   }, [scene]);
-
-  useEffect(() => {
-    onColorsReady(glowColors);
-  }, [glowColors, onColorsReady]);
 
   useEffect(() => {
     return () => {
@@ -270,19 +168,16 @@ export default function Showcase3DSection({
   replayOnReenter = true,
 }: Showcase3DSectionProps) {
   const stageRef = useRef<HTMLDivElement>(null);
-  const ambientOrbRef = useRef<HTMLDivElement>(null);
+  const ambientWrapperRef = useRef<HTMLDivElement>(null);
+  const ambientCanvasRef = useRef<HTMLCanvasElement>(null);
+  const webglCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [triggerCount, setTriggerCount] = useState(0);
   const [hasRevealed, setHasRevealed] = useState(false);
   const [isBursting, setIsBursting] = useState(false);
-  const [glowColors, setGlowColors] = useState<[string, string]>(['#f472b6', '#a855f7']);
   const hasPlayedOnce = useRef(false);
 
-  const handleColorsReady = useCallback((colors: [string, string]) => {
-    setGlowColors(colors);
-  }, []);
-
-  // เปิดไฟฟุ้งทั่วเว็บ + เร่งหมุน เมื่อเลื่อนมาเจอตัวโมเดล
+  // 1. เปิดไฟเมื่อเลื่อนมาเจอ / ดับไฟเมื่อเลื่อนกลับขึ้นไปหน้าแรกด้านบน
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
@@ -301,10 +196,10 @@ export default function Showcase3DSection({
             clearTimeout(burstTimer);
             burstTimer = setTimeout(() => setIsBursting(false), 1400);
           }
-        }else if(entry.boundingClientRect.top > 0){
-            setHasRevealed(false);
-            setIsBursting(false);
-            clearTimeout(burstTimer);
+        } else if (entry.boundingClientRect.top > 0) {
+          setHasRevealed(false);
+          setIsBursting(false);
+          clearTimeout(burstTimer);
         }
       },
       { threshold: 0.35 }
@@ -317,21 +212,22 @@ export default function Showcase3DSection({
     };
   }, [replayOnReenter]);
 
-  // ขยับจุดศูนย์กลางแสงพื้นหลังตามตำแหน่งโมเดลเวลาเลื่อนหน้าจอ
+  // 2. ขยับตำแหน่งแสงพื้นหลังให้ตรงกลางโมเดลตลอดตอนเลื่อนหน้าจอ
   useEffect(() => {
     let rafId = 0;
 
     const updateGlowPosition = () => {
       const stage = stageRef.current;
-      const orb = ambientOrbRef.current;
-      if (!stage || !orb) return;
+      const wrapper = ambientWrapperRef.current;
+      if (!stage || !wrapper) return;
 
       const rect = stage.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
 
-      orb.style.transform = `translate3d(${centerX}px, ${centerY}px, 0) translate(-50%, -50%)`;
-      if (rect.top >= window.innerHeight){
+      wrapper.style.transform = `translate3d(${centerX}px, ${centerY}px, 0) translate(-50%, -50%)`;
+
+      if (rect.top >= window.innerHeight) {
         setHasRevealed(false);
         setIsBursting(false);
       }
@@ -353,39 +249,67 @@ export default function Showcase3DSection({
     };
   }, []);
 
-  const [primaryGlow, secondaryGlow] = glowColors;
+  // 3. ดูดภาพจริงจาก WebGL ลง Canvas จิ๋ว 64x64 (~20fps) เพื่อทำแสงฟุ้งตรงตามสีโมเดลทุกมุมแบบเรียลไทม์
+  useEffect(() => {
+    if (!hasRevealed) return;
+
+    let rafId = 0;
+    let lastDraw = 0;
+
+    const syncAmbientGlow = (now: number) => {
+      rafId = requestAnimationFrame(syncAmbientGlow);
+      if (now - lastDraw < 50) return;
+      lastDraw = now;
+
+      const src = webglCanvasRef.current;
+      const dst = ambientCanvasRef.current;
+      if (!src || !dst || src.width === 0 || src.height === 0) return;
+
+      const ctx = dst.getContext('2d');
+      if (!ctx) return;
+
+      // ตัดเฉพาะโซนสี่เหลี่ยมจัตุรัสตรงกลางที่มีตัวโมเดล แล้ววางเว้นขอบไว้ 16px กันขอบเบลอโดนตัด
+      const size = Math.min(src.width, src.height);
+      const sx = (src.width - size) / 2;
+      const sy = (src.height - size) / 2;
+
+      ctx.clearRect(0, 0, dst.width, dst.height);
+      ctx.drawImage(src, sx, sy, size, size, 16, 16, 32, 32);
+    };
+
+    rafId = requestAnimationFrame(syncAmbientGlow);
+    return () => cancelAnimationFrame(rafId);
+  }, [hasRevealed]);
 
   return (
     <>
-      {/* แสง Neon ที่ฟุ้งกระจายกลืนไปทั่วทั้งหน้าเว็บ (ไร้ขอบตัด) */}
+      {/* แสงฟุ้งแบบ Ambient Mode ที่ดึงสีจริงจากตัวโมเดล 3D ทุกเฟรม (ไร้ขอบตัด) */}
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
       >
-        {/* แสงย้อมบรรยากาศนุ่มๆ คลุมทั้งหน้าจอ */}
         <div
-          className="absolute inset-0 transition-opacity duration-1000 ease-out"
+          ref={ambientWrapperRef}
+          className="absolute top-0 left-0 w-[70vmax] h-[70vmax] mix-blend-screen transition-opacity duration-1000 ease-out will-change-transform"
           style={{
-            opacity: !hasRevealed ? 0 : isBursting ? 0.36 : 0.24,
-            background: `radial-gradient(circle at 50% 50%, ${primaryGlow}66 0%, ${secondaryGlow}33 50%, transparent 90%)`,
+            opacity: !hasRevealed ? 0 : isBursting ? 0.95 : 0.72,
+            filter: 'blur(95px) saturate(3) brightness(3)',
           }}
-        />
-
-        {/* ลำแสงขนาดใหญ่พิเศษที่แผ่จากกลางโมเดลออกไปทั่วจอ */}
-        <div
-          ref={ambientOrbRef}
-          className="absolute top-0 left-0 w-[160vmax] h-[160vmax] rounded-full mix-blend-screen transition-opacity duration-1000 ease-out will-change-transform"
-          style={{
-            opacity: !hasRevealed ? 0 : isBursting ? 0.72 : 0.52,
-            filter: 'blur(110px)',
-            background: `radial-gradient(circle, ${primaryGlow}dd 0%, ${primaryGlow}88 22%, ${secondaryGlow}44 45%, transparent 72%)`,
-          }}
-        />
+        >
+          <canvas
+            ref={ambientCanvasRef}
+            width={64}
+            height={64}
+            className="w-full h-full"
+          />
+        </div>
       </div>
 
-      {/* เอา max-w-7xl ไปไว้เฉพาะหัวข้อ เพื่อให้โซนโมเดล 3D กว้างเต็มจอไม่มีขอบซ้าย-ขวา */}
-      <section id="showcase-3d" className="relative z-10 w-full min-h-dvh py-space-xl">
-        <div className="max-w-7xl mx-auto px-margin flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+      <section
+        id="showcase-3d"
+        className="relative z-10 w-full min-h-dvh flex flex-col pt-24 pb-space-lg"
+      >
+        <div className="max-w-7xl w-full mx-auto px-margin flex flex-col md:flex-row md:items-end justify-between mb-space-md gap-space-sm">
           <div>
             <div className="flex items-center gap-space-xs font-nerd text-sm text-primary tracking-widest uppercase mb-1">
               <span>00 // 3D INTERACTIVE SHOWCASE</span>
@@ -400,10 +324,10 @@ export default function Showcase3DSection({
           </p>
         </div>
 
-        {/* ใช้ ellipse 48% 48% เพื่อให้จางเป็น 0% สนิทก่อนชนขอบ Canvas ทุกด้าน */}
+        {/* ยืดเต็มพื้นที่ความสูงของหน้าจอนั้นๆ และไล่ขอบด้วย Radial Mask */}
         <div
           ref={stageRef}
-          className="relative w-full flex-1 min-h-[420px] h-[520px] sm:h-[600px] md:h-[680px] flex items-center justify-center"
+          className="relative flex-1 min-h-[420px] w-full"
           style={{
             maskImage:
               'radial-gradient(ellipse 48% 48% at 50% 50%, black 52%, transparent 100%)',
@@ -411,50 +335,51 @@ export default function Showcase3DSection({
               'radial-gradient(ellipse 48% 48% at 50% 50%, black 52%, transparent 100%)',
           }}
         >
-          <Canvas
-            orthographic
-            dpr={[1, 2]}
-            gl={{
-              alpha: true,
-              antialias: true,
-              premultipliedAlpha: true,
-              toneMapping: THREE.ACESFilmicToneMapping,
-            }}
-            camera={{ position: [10, 10, 10], zoom: 65, near: -100, far: 1000 }}
-          >
-            <ResponsiveIsoCamera />
+          <div className="absolute inset-0">
+            <Canvas
+              orthographic
+              dpr={[1, 2]}
+              gl={{
+                alpha: true,
+                antialias: true,
+                premultipliedAlpha: true,
+                preserveDrawingBuffer: true, // จำเป็นเพื่อให้ Ambient Canvas ดูดสีภาพจริงไปทำแสงฟุ้งได้
+                toneMapping: THREE.ACESFilmicToneMapping,
+              }}
+              onCreated={({ gl }) => {
+                webglCanvasRef.current = gl.domElement;
+              }}
+              camera={{ position: [10, 10, 10], zoom: 65, near: -100, far: 1000 }}
+            >
+              <ResponsiveIsoCamera />
 
-            <ambientLight intensity={0.4} color="#ffffff" />
-            <directionalLight position={[10, 14, 10]} intensity={1.4} color="#ffffff" />
-            <directionalLight position={[-10, -6, -10]} intensity={0.6} color="#ffffff" />
+              <ambientLight intensity={0.4} color="#ffffff" />
+              <directionalLight position={[10, 14, 10]} intensity={1.4} color="#ffffff" />
+              <directionalLight position={[-10, -6, -10]} intensity={0.6} color="#ffffff" />
 
-            <Suspense fallback={null}>
-              <Environment preset="night" />
-              <SpinningModel
-                modelPath={modelPath}
-                triggerCount={triggerCount}
-                onColorsReady={handleColorsReady}
+              <Suspense fallback={null}>
+                <Environment preset="night" />
+                <SpinningModel modelPath={modelPath} triggerCount={triggerCount} />
+              </Suspense>
+
+              <EffectComposer multisampling={0}>
+                <Bloom
+                  mipmapBlur
+                  luminanceThreshold={0.45}
+                  luminanceSmoothing={0.25}
+                  intensity={1.0}
+                  radius={0.5}
+                />
+              </EffectComposer>
+
+              <OrbitControls
+                makeDefault
+                target={[0, 0, 0]}
+                enableZoom={false}
+                enablePan={false}
               />
-            </Suspense>
-
-            {/* ลด radius ลงเล็กน้อยให้ Bloom กระจุกสวยรอบตัวเกาะ แล้วให้แสงชั้นพื้นหลังรับช่วงฟุ้งต่อทั่วเว็บ */}
-            <EffectComposer multisampling={0}>
-              <Bloom
-                mipmapBlur
-                luminanceThreshold={0.45}
-                luminanceSmoothing={0.25}
-                intensity={1.0}
-                radius={0.55}
-              />
-            </EffectComposer>
-
-            <OrbitControls
-              makeDefault
-              target={[0, 0, 0]}
-              enableZoom={false}
-              enablePan={false}
-            />
-          </Canvas>
+            </Canvas>
+          </div>
         </div>
       </section>
     </>
