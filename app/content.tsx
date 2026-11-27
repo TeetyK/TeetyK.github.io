@@ -1,6 +1,8 @@
 import Image from "next/image";
-import IconPerson from './assets/user.jpg'
-import dummyicon from './assets/user.jpg'
+import IconPerson from './assets/user.jpg';
+import dummyicon from './assets/user.jpg';
+import { LuGithub } from 'react-icons/lu';
+import Showcase3DSection from './island'
 export default function Content(){
     return (
         <div className="flex flex-col w-full">
@@ -8,7 +10,7 @@ export default function Content(){
                 <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-primary/10 rounded-full blur-[140px] pointer-events-none"></div>
                 <div className="absolute top-96 -right-48 w-96 h-96 bg-primary-container/10 rounded-full blur-[120px] pointer-events-none"></div>
                 <div className="absolute top-[1400px] -left-48 w-96 h-96 bg-tertiary/10 rounded-full blur-[130px] pointer-events-none"></div>
-                <section className="relative max-w-7xl mx-auto px-margin pt-12 pb-space-xl" id="about">
+                <section className="relative max-w-7xl mx-auto px-margin pt-12 pb-space-xl min-h-dvh" id="about">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
                         <div className="lg:col-span-8 flex flex-col items-start gap-space-md">
                             <div className="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-high border border-outline-variant/30 shadow-[0_0_20px_rgba(244,114,182,0.12)]">
@@ -136,7 +138,8 @@ export default function Content(){
                         </div>
                     </div>
                 </section>
-                <section className="relative max-w-7xl mx-auto px-margin py-space-xl border-t border-outline-variant/20" id="experience">
+                <Showcase3DSection modelPath="./model/voxel_island_glow_1.glb" />
+                <section className="relative min-h-dvh max-w-7xl mx-auto px-margin py-space-xl border-t border-outline-variant/20" id="experience">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
                         <div>
                             <div className="flex items-center gap-space-xs font-nerd text-normal text-primary tracking-widest uppercase mb-1">
@@ -168,7 +171,7 @@ export default function Content(){
                                     </div>
                             </div>
                                 <p className="font-thai text-body-sm text-on-surface-variant mb-space-md leading-relaxed">
-                                    กระบวนการทำงานตั้งแต่ Data Preparation / Cleaning / EDA , Data Transformation / Feature Engineering , Modeling และ Evaluation ทั้งด้านโปรเจค Forward Looking PD และ Creidit Scord Card ทั้ง A/B score และได้มีโอกาสพัฒนาระบบ WatchList เพื่อเรียกกลุ่มลูกหนี้ จนได้ผลลัพธ์เป็นรายงาน Report รายเดือน
+                                    กระบวนการทำงานตั้งแต่ Data Preparation / Cleaning / EDA , Data Transformation / Feature Engineering , Modeling และ Evaluation ทั้งด้านโปรเจค Forward Looking PD และ Creidit Scord Card ทั้ง A/B score และได้มีโอกาสพัฒนาระบบ WatchList เพื่อเรียกกลุ่มลูกหนี้ จนได้ผลลัพธ์เป็นรายงาน Report รายเดือน และได้มีโอภาสได้การทำ Data pipeline ให้กับโปรเจค StressTest
                                 </p>
                                 <div className="flex flex-wrap items-center gap-2">
                                     <span className="font-nerd text-sm px-2.5 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">Python (pandas/numpy)</span>
@@ -187,7 +190,7 @@ export default function Content(){
                                         <span className="material-symbols-outlined text-[20px]">lan</span>
                                     </div>
                                     <div>
-                                        <h3 className="font-nerd text-normal text-on-surface group-hover:text-[#44e38e] transition-colors">Tutor Python</h3>
+                                        <h3 className="font-nerd text-normal text-on-surface group-hover:text-[#44e38e] transition-colors">Tutor Python Programming</h3>
                                         <span className="font-nerd text-outline">Part-time on Sunday </span>
                                     </div>
                                 </div>
@@ -239,7 +242,7 @@ export default function Content(){
                         </div>
                     </div>
                 </section>
-                <section className="relative max-w-7xl mx-auto px-margin py-space-xl border-t border-outline-variant/20" id="education">
+                <section className="relative min-h-dvh max-w-7xl mx-auto px-margin py-space-xl border-t border-outline-variant/20" id="education">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
                         <div>
                             <div className="flex items-center gap-space-xs font-nerd text-normal text-primary tracking-widest uppercase mb-1">
@@ -265,7 +268,7 @@ export default function Content(){
                                     <p className="font-thai text-body-md text-on-surface-variant leading-relaxed mb-space-sm">
                                         เข้าร่วมทหารกองประจำการ กองทัพบกไทย กองพันทหารสื่อสารที่ 102 กรมทหารสื่อสารที่ 1 (ส.1 พัน 102) ค่ายกำแพงเพชรอัครโยธิน ตำบล สวนหลวง อำเภอ กระทุ่มแบน จังหวัด สมุทรสาคร ระยะเวลา 6 เดือน
                                     </p>
-                                        <Image src={dummyicon} width={150} height={150} alt="photo military traning"
+                                        <Image src="./amy_thai.svg" width={150} height={150} alt="photo military traning"
                                                 className="right-0 top-3 object-cover"/>
                                 </div>
                             </div>
@@ -284,7 +287,7 @@ export default function Content(){
                                     <p className="font-thai text-body-md text-on-surface-variant leading-relaxed mb-space-sm">
                                         สมัครเป็นพนักงาน outsource บริษัท I-SUPPORT Co.Ltd ระหว่างรอรับราชการทหาร และได้ร่วมงานกับทาง ธนาคารอิสลามแห่งประเทศไทยในการทำโมเดล
                                     </p>
-                                        <Image src={dummyicon} width={150} height={150} alt="photo military traning"
+                                        <Image src="./icon_isupport.jpg" width={150} height={150} alt="photo working outsource"
                                                 className="right-0 top-3 object-cover"/>
                                 </div>
                             </div>
@@ -304,7 +307,7 @@ export default function Content(){
                                         ได้ศึกษาที่ มหาวิทยาลัยเกษตรศาสตร์ คณะวิทยาศาสตร์ ศรีราชา สาขา วิทยาการคอมพิวเตอร์ ภาคพิเศษ S06 เกรด : 3.75 เกียรตินิยมอันดับ 1
                                         เนื่องจากมีความแรงจูงใจและสนใจเกี่ยวกับคอมพิวเตอร์ เขียนโปรแกรม การคิด และแก้ปัญหา เทคโนโลยีใหม่ๆรวมถึง AI
                                     </p>
-                                        <Image src={dummyicon} width={150} height={150} alt="photo military traning"
+                                        <Image src="./icon_ku.png" width={150} height={150} alt="photo collage student-ku"
                                                 className="right-0 top-3 object-cover"/>
                                 </div>
                             </div>
@@ -323,7 +326,7 @@ export default function Content(){
                                     <p className="font-thai text-body-md text-on-surface-variant leading-relaxed mb-space-sm">
                                         ได้ศึกษาที่ โรงเรียนสมุทรสาครบูรณะ ห้อง อังกฤษ-คอมพิวเตอร์ เกรด : 3.14 ได้ทักษะการจับกล้องถ่ายรูป/วีดีโอ ปั้น 3d ตัดต่อ และออกแบบต่างๆ และมีประสบการณ์ทำหนังสั้น ในระดับมัธยมปลาย
                                     </p>
-                                        <Image src={dummyicon} width={150} height={150} alt="photo military traning"
+                                        <Image src="./icon_skn.png" width={150} height={150} alt="photo student in high school - skn"
                                                 className="right-0 top-3 object-cover"/>
                                 </div>
                             </div>
@@ -345,7 +348,12 @@ export default function Content(){
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-space-md">
-                        Comming Soon....
+                        <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
+                                <a href="https://github.com/TeetyK" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg text-sm bg-primary-container text-on-primary-container font-nerd font-semibold shadow-[0_0_24px_rgba(244,114,182,0.45)] hover:bg-primary transition-all duration-300 hover:-translate-y-0.5">
+                                    <span>Github</span>
+                                    <LuGithub size={20} />
+                                </a>
+                        </div>
                     </div>
                 </section>
             </div>
