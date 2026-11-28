@@ -2,7 +2,10 @@ import Image from "next/image";
 import IconPerson from './assets/user.jpg';
 import dummyicon from './assets/user.jpg';
 import { LuGithub } from 'react-icons/lu';
+import { IoIosCamera } from 'react-icons/io';
+import { MdPhotoSizeSelectActual } from "react-icons/md";
 import Showcase3DSection from './island'
+import { FaFacebook } from "react-icons/fa";
 export default function Content(){
     return (
         <div className="flex flex-col w-full">
@@ -224,7 +227,7 @@ export default function Content(){
                                     </div>
                                 </div>
                                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest font-nerd text-[12px] text-tertiary self-start">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                                        <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
                                         2024/05 - 2024/10 (6 month)
                                     </div>
                             </div>
@@ -353,15 +356,39 @@ export default function Content(){
                                     <span>Github</span>
                                     <LuGithub size={20} />
                                 </a>
-                                <a href="shortclip" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg bg-surface-container text-tertiary font-nerd font-semibold text-sm border border-tertiary/20 hover:bg-surface-container-high hover:border-tertiary/50 transition-all duration-300">
+                                <a href="#shortclip" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg bg-surface-container text-tertiary font-nerd font-semibold text-sm border border-tertiary/20 hover:bg-surface-container-high hover:border-tertiary/50 transition-all duration-300">
                                     <span>Contest ShortClip</span>
-                                    <LuGithub size={20} />
+                                    <IoIosCamera size={20} />
                                 </a>
-                                <a href="albums" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg text-sm bg-green-400 text-on-primary-container font-nerd font-semibold shadow-[0_0_24px_rgba(0.209,151.711,0.45)] hover:bg-green-400/10 hover:text-green-400 transition-all duration-300 hover:-translate-y-0.5">
+                                <a href="#albums" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg text-sm bg-green-400 text-surface-container font-nerd font-semibold shadow-[0_0_24px_rgba(0.209,151.711,0.45)] hover:bg-green-400/10 hover:text-green-400 transition-all duration-300 hover:-translate-y-0.5">
                                     <span>Photos</span>
-                                    <LuGithub size={20} />
+                                    <MdPhotoSizeSelectActual size={20} />
                                 </a>
                         </div>
+                       
+                    </div>
+                </section>
+                <section className="relative max-w-7xl mx-auto px-margin py-space-xl border-t border-outline-variant/20" id="projects">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+                        <div>
+                            <div className="flex items-center gap-space-xs font-nerd text-normal text-primary tracking-widest uppercase mb-1">
+                                <span>04 // CONTACT &amp; MESSAGE ME</span>
+                                <span className="w-8 h-px bg-primary/40"></span>
+                            </div>
+                            <h2 className="font-thai text-lg text-on-surface tracking-tight">ติดต่อ & ประสานงานต่างๆ</h2>
+                        </div>
+                        <p className="font-thai text-body-sm text-on-surface-variant max-w-md">
+                            ติดต่องานผ่านช่องทางต่างๆ
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-space-md lg:grid-cols-1">
+                        <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
+                                <a href="#facebook" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg text-sm bg-green-400 text-surface-container font-nerd font-semibold shadow-[0_0_24px_rgba(0.209,151.711,0.45)] hover:bg-green-400/10 hover:text-green-400 transition-all duration-300 hover:-translate-y-0.5">
+                                    <span>กำลังทำอยู่ คิดไม่ออกโว้ย</span>
+                                    <FaFacebook size={20} />
+                                </a>
+                        </div>
+                       
                     </div>
                 </section>
             </div>

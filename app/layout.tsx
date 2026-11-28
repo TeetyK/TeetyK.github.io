@@ -3,6 +3,8 @@ import { Geist, Geist_Mono , Inter , IBM_Plex_Sans_Thai , Plus_Jakarta_Sans } fr
 import localFont from "next/font/local";
 import 'material-symbols/outlined.css';
 import "./globals.css";
+import SakuraBackground from './sakurabg';
+import Header from './header';
 const nerdFont = localFont({
   src: "./fonts/JetBrainsMonoNerdFontMono-Regular.ttf",
   variable: "--font-nerd"
@@ -46,7 +48,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${nerdFont.variable} ${inter.variable} ${thaiFont.variable} ${plus_jakarta_sans.variable} h-full antialiased`}
     >
-      <body className="bg-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">{children}</body>
+      <body className="bg-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+        <SakuraBackground petalsCount={50} introDuration={16} />
+        <Header />
+        <main className='w-full pt-16 bg-background min-h-screen'>
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
