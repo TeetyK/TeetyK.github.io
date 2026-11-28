@@ -277,7 +277,7 @@ export default function Content(){
                     {/* line 2 */}
                     <div className="relative pl-6 space-y-space-xl before:absolute before:left-2 before:top-2 before:bottom-2 before:w-px before:bg-surface-container-high">
                         <div className="relative group">
-                            <span className="absolute -left-[19px] top-1.5 w-2 h-2 rounded-full bg-primary -ring-4 ring-surface"></span>
+                            <span className="absolute -left-[19px] top-1.5 w-2 h-2 rounded-full bg-yellow-300 -ring-4 ring-surface"></span>
                             <div className="bg-surface-container-low p-space-lg rounded-lg shadow-sm hover:bg-surface-container transition-colors">
                                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-space-xs mb-space-xs">
                                     <h3 className="font-nerd text-body-md text-on-surface font-medium">Data Scientist - Outsource</h3>
@@ -296,7 +296,7 @@ export default function Content(){
                     {/* line 3 */}
                     <div className="relative pl-6 space-y-space-xl before:absolute before:left-2 before:top-2 before:bottom-2 before:w-px before:bg-surface-container-high">
                         <div className="relative group">
-                            <span className="absolute -left-[19px] top-1.5 w-2 h-2 rounded-full bg-primary -ring-4 ring-surface"></span>
+                            <span className="absolute -left-[19px] top-1.5 w-2 h-2 rounded-full bg-green-500 -ring-4 ring-surface"></span>
                             <div className="bg-surface-container-low p-space-lg rounded-lg shadow-sm hover:bg-surface-container transition-colors">
                                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-space-xs mb-space-xs">
                                     <h3 className="font-nerd text-body-md text-on-surface font-medium">Collage Student / Computer Science</h3>
@@ -316,7 +316,7 @@ export default function Content(){
                     {/* line 4 */}
                     <div className="relative pl-6 space-y-space-xl before:absolute before:left-2 before:top-2 before:bottom-2 before:w-px before:bg-surface-container-high">
                         <div className="relative group">
-                            <span className="absolute -left-[19px] top-1.5 w-2 h-2 rounded-full bg-primary -ring-4 ring-surface"></span>
+                            <span className="absolute -left-[19px] top-1.5 w-2 h-2 rounded-full bg-blue-600 -ring-4 ring-surface"></span>
                             <div className="bg-surface-container-low p-space-lg rounded-lg shadow-sm hover:bg-surface-container transition-colors">
                                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-space-xs mb-space-xs">
                                     <h3 className="font-nerd text-body-md text-on-surface font-medium">Student in High School / English & Computer Program</h3>
@@ -347,14 +347,18 @@ export default function Content(){
                             โปรเจคทำเล่นๆเวลาว่าง
                         </p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-space-md lg:grid-cols-1">
                         <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
-                                <a href="https://github.com/TeetyK" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg text-sm bg-primary-container text-on-primary-container font-nerd font-semibold shadow-[0_0_24px_rgba(244,114,182,0.45)] hover:bg-primary transition-all duration-300 hover:-translate-y-0.5">
+                                <a href="https://github.com/TeetyK" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg bg-surface-container text-primary font-nerd font-semibold text-sm border border-primary/20 hover:bg-surface-container-high hover:border-primary/50 transition-all duration-300">
                                     <span>Github</span>
                                     <LuGithub size={20} />
                                 </a>
-                                <a href="https://github.com/TeetyK" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg text-sm bg-primary-container text-on-primary-container font-nerd font-semibold shadow-[0_0_24px_rgba(244,114,182,0.45)] hover:bg-primary transition-all duration-300 hover:-translate-y-0.5">
+                                <a href="shortclip" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg bg-surface-container text-tertiary font-nerd font-semibold text-sm border border-tertiary/20 hover:bg-surface-container-high hover:border-tertiary/50 transition-all duration-300">
                                     <span>Contest ShortClip</span>
+                                    <LuGithub size={20} />
+                                </a>
+                                <a href="albums" className="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-lg text-sm bg-green-400 text-on-primary-container font-nerd font-semibold shadow-[0_0_24px_rgba(0.209,151.711,0.45)] hover:bg-green-400/10 hover:text-green-400 transition-all duration-300 hover:-translate-y-0.5">
+                                    <span>Photos</span>
                                     <LuGithub size={20} />
                                 </a>
                         </div>
